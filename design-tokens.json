@@ -1,0 +1,128 @@
+{
+  "$schema": "https://raw.githubusercontent.com/design-tokens/community-group/main/technical-reports/design-tokens-format-module.json",
+  "$metadata": {
+    "name": "Jovan Mladenović Portfolio",
+    "description": "Design tokens for the portfolio site. Derived 2026-03-24.",
+    "version": "1.0.0"
+  },
+
+  "color": {
+    "background": {
+      "primary":   { "$value": "#ECEAE1",   "$type": "color", "$description": "Warm parchment — main canvas" },
+      "subtle":    { "$value": "#F4F2EB",   "$type": "color", "$description": "Lighter parchment — cards, hover lift" },
+      "inverse":   { "$value": "#17150D",   "$type": "color", "$description": "Near-black — dark sections (Approach)" }
+    },
+    "text": {
+      "primary":      { "$value": "#17150D",                 "$type": "color", "$description": "Primary body and headings" },
+      "secondary":    { "$value": "#7B7970",                 "$type": "color", "$description": "Muted — captions, labels, metadata" },
+      "inverse":      { "$value": "#F4F2EB",                 "$type": "color", "$description": "On dark backgrounds" },
+      "inverse-dim":  { "$value": "rgba(244, 242, 235, 0.42)", "$type": "color", "$description": "Body text on dark background" },
+      "inverse-mid":  { "$value": "rgba(244, 242, 235, 0.30)", "$type": "color", "$description": "Italic / em text on dark background" }
+    },
+    "accent": {
+      "primary": { "$value": "#B8955A", "$type": "color", "$description": "Warm gold — CTAs, labels, hover states" }
+    },
+    "status": {
+      "available": { "$value": "#6EA06E", "$type": "color", "$description": "Green availability indicator dot" }
+    },
+    "border": {
+      "default": { "$value": "rgba(23, 21, 13, 0.10)",  "$type": "color", "$description": "Hairline divider on light backgrounds" },
+      "light":   { "$value": "rgba(255, 255, 255, 0.08)", "$type": "color", "$description": "Hairline divider on dark backgrounds" }
+    }
+  },
+
+  "font": {
+    "family": {
+      "display": { "$value": "'Inter', sans-serif", "$type": "fontFamily", "$description": "Hero names, headlines, numbered items" },
+      "ui":      { "$value": "'Syne', sans-serif",  "$type": "fontFamily", "$description": "Nav, labels, body copy, UI chrome" }
+    },
+    "weight": {
+      "light":     { "$value": 300, "$type": "fontWeight" },
+      "regular":   { "$value": 400, "$type": "fontWeight" },
+      "medium":    { "$value": 500, "$type": "fontWeight" },
+      "semibold":  { "$value": 600, "$type": "fontWeight" },
+      "bold":      { "$value": 700, "$type": "fontWeight" },
+      "extrabold": { "$value": 800, "$type": "fontWeight" }
+    },
+    "size": {
+      "2xs":   { "$value": "10px",                   "$type": "fontSize", "$description": "Labels, micro UI text" },
+      "xs":    { "$value": "11px",                   "$type": "fontSize", "$description": "Nav links, captions" },
+      "sm":    { "$value": "12px",                   "$type": "fontSize", "$description": "Nav logo, small metadata" },
+      "sm-md": { "$value": "13px",                   "$type": "fontSize", "$description": "Approach body, numbered items" },
+      "base":  { "$value": "14px",                   "$type": "fontSize", "$description": "Project descriptions, contact sub" },
+      "md":    { "$value": "15px",                   "$type": "fontSize", "$description": "About body copy" },
+      "lg":    { "$value": "clamp(20px, 2.6vw, 32px)",  "$type": "fontSize", "$description": "Hero tagline, contact links" },
+      "xl":    { "$value": "clamp(26px, 3.8vw, 48px)",  "$type": "fontSize", "$description": "Project names in list" },
+      "2xl":   { "$value": "clamp(40px, 5.2vw, 72px)",  "$type": "fontSize", "$description": "Section display headlines" },
+      "3xl":   { "$value": "clamp(56px, 8vw, 110px)",   "$type": "fontSize", "$description": "Contact headline" },
+      "hero":  { "$value": "clamp(80px, 11.5vw, 160px)","$type": "fontSize", "$description": "Hero name — largest type" }
+    },
+    "letterSpacing": {
+      "tight":  { "$value": "0.06em", "$type": "letterSpacing" },
+      "sm":     { "$value": "0.09em", "$type": "letterSpacing" },
+      "base":   { "$value": "0.10em", "$type": "letterSpacing" },
+      "md":     { "$value": "0.12em", "$type": "letterSpacing" },
+      "lg":     { "$value": "0.14em", "$type": "letterSpacing" },
+      "xl":     { "$value": "0.18em", "$type": "letterSpacing" }
+    },
+    "lineHeight": {
+      "tightest": { "$value": 0.88, "$type": "lineHeight", "$description": "Hero name" },
+      "tight":    { "$value": 1.04, "$type": "lineHeight", "$description": "Display headlines" },
+      "snug":     { "$value": 1.2,  "$type": "lineHeight", "$description": "Approach card titles" },
+      "normal":   { "$value": 1.3,  "$type": "lineHeight", "$description": "Tagline" },
+      "relaxed":  { "$value": 1.6,  "$type": "lineHeight", "$description": "Label stacks" },
+      "loose":    { "$value": 1.8,  "$type": "lineHeight", "$description": "Body copy" },
+      "spacious":  { "$value": 1.85, "$type": "lineHeight", "$description": "Approach body text" }
+    }
+  },
+
+  "spacing": {
+    "page-x": { "$value": "clamp(24px, 6.5vw, 104px)", "$type": "dimension", "$description": "Horizontal page padding" },
+    "page-y": { "$value": "clamp(72px, 9vw, 128px)",   "$type": "dimension", "$description": "Section vertical padding" },
+    "1":  { "$value": "3px",  "$type": "dimension" },
+    "2":  { "$value": "6px",  "$type": "dimension" },
+    "3":  { "$value": "10px", "$type": "dimension" },
+    "4":  { "$value": "14px", "$type": "dimension" },
+    "5":  { "$value": "16px", "$type": "dimension" },
+    "6":  { "$value": "20px", "$type": "dimension" },
+    "7":  { "$value": "24px", "$type": "dimension" },
+    "8":  { "$value": "28px", "$type": "dimension" },
+    "9":  { "$value": "36px", "$type": "dimension" },
+    "10": { "$value": "40px", "$type": "dimension" },
+    "11": { "$value": "48px", "$type": "dimension" },
+    "12": { "$value": "52px", "$type": "dimension" },
+    "13": { "$value": "64px", "$type": "dimension" },
+    "14": { "$value": "80px", "$type": "dimension" },
+    "15": { "$value": "96px", "$type": "dimension" }
+  },
+
+  "motion": {
+    "duration": {
+      "fast":   { "$value": "0.20s", "$type": "duration", "$description": "Color/opacity transitions" },
+      "base":   { "$value": "0.25s", "$type": "duration", "$description": "Short interactions (gap, padding)" },
+      "medium": { "$value": "0.40s", "$type": "duration", "$description": "Nav blur, icon rotate" },
+      "slow":   { "$value": "0.55s", "$type": "duration", "$description": "Accordion expand" },
+      "reveal": { "$value": "0.85s", "$type": "duration", "$description": "Scroll-reveal fade-up" },
+      "rise":   { "$value": "1.00s", "$type": "duration", "$description": "Hero entrance animation" },
+      "pulse":  { "$value": "2.60s", "$type": "duration", "$description": "Status dot breathing loop" }
+    },
+    "easing": {
+      "spring":  { "$value": "cubic-bezier(0.16, 1, 0.3, 1)", "$type": "cubicBezier", "$description": "Primary easing — all major transitions" },
+      "linear":  { "$value": "linear",     "$type": "cubicBezier" },
+      "in-out":  { "$value": "ease-in-out","$type": "cubicBezier" }
+    }
+  },
+
+  "border": {
+    "width":   { "$value": "1px",    "$type": "dimension" },
+    "default": { "$value": "1px solid rgba(23, 21, 13, 0.10)",   "$type": "border", "$description": "On light backgrounds" },
+    "light":   { "$value": "1px solid rgba(255, 255, 255, 0.08)", "$type": "border", "$description": "On dark backgrounds" }
+  },
+
+  "zIndex": {
+    "base":    { "$value": 0,    "$type": "number" },
+    "raised":  { "$value": 1,    "$type": "number" },
+    "nav":     { "$value": 200,  "$type": "number" },
+    "overlay": { "$value": 9999, "$type": "number" }
+  }
+}

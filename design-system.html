@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — Jovan Mladenović Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg-primary:      #ECEAE1;
+      --color-bg-subtle:       #F4F2EB;
+      --color-bg-inverse:      #17150D;
+      --color-text-primary:    #17150D;
+      --color-text-secondary:  #7B7970;
+      --color-text-inverse:    #F4F2EB;
+      --color-text-inverse-dim: rgba(244,242,235,.42);
+      --color-text-inverse-mid: rgba(244,242,235,.30);
+      --color-accent:          #B8955A;
+      --color-status-available: #6EA06E;
+      --color-border:          rgba(23,21,13,.10);
+      --color-border-light:    rgba(255,255,255,.08);
+
+      --font-display: 'Inter', sans-serif;
+      --font-ui:      'Syne', sans-serif;
+
+      --pad-x: 80px;
+    }
+
+    html { background: var(--color-bg-primary); }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 120px;
+    }
+
+    /* ── Cover ─────────────────────────────────────────────────── */
+    .cover {
+      padding: 80px var(--pad-x) 72px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .cover-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .cover-title span {
+      display: block;
+      font-style: italic;
+      color: var(--color-text-secondary);
+    }
+    .cover-meta {
+      text-align: right;
+    }
+    .cover-meta p {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+    .cover-meta strong {
+      color: var(--color-accent);
+    }
+
+    /* ── Section wrapper ───────────────────────────────────────── */
+    .section {
+      padding: 72px var(--pad-x) 0;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    /* ── Color ─────────────────────────────────────────────────── */
+    .color-groups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .color-group-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+    .color-swatches {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 52px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .swatch-block {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+    .swatch-info {
+      flex: 1;
+      padding-right: 16px;
+    }
+    .swatch-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: 0.04em;
+    }
+    .swatch-token {
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ── Typography ────────────────────────────────────────────── */
+    .type-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .type-families {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .type-family-card {
+      padding: 36px;
+      background: var(--color-bg-subtle);
+      border-radius: 4px;
+    }
+    .type-family-sample {
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .type-family-sample.italic { font-style: italic; }
+    .type-family-meta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .type-family-meta span {
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .type-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+      gap: 24px;
+    }
+    .type-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .type-row-sample {
+      font-family: var(--font-display);
+      font-weight: 300;
+      color: var(--color-text-primary);
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── Spacing ───────────────────────────────────────────────── */
+    .spacing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-end;
+    }
+    .spacing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .spacing-bar {
+      background: var(--color-accent);
+      width: 32px;
+      border-radius: 2px;
+      opacity: 0.7;
+    }
+    .spacing-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+    .spacing-value {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ── Motion ────────────────────────────────────────────────── */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .motion-group-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+    .motion-rows {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--color-border);
+    }
+    .motion-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 120px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+      gap: 16px;
+    }
+    .motion-key {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .motion-val {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--color-accent);
+    }
+    .motion-desc {
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      text-align: right;
+    }
+
+    /* ── Border ────────────────────────────────────────────────── */
+    .border-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .border-card {
+      padding: 36px;
+      background: var(--color-bg-subtle);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .border-preview {
+      width: 100%;
+      height: 1px;
+    }
+    .border-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .border-card-val {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--color-accent);
+    }
+
+    /* dark card */
+    .border-card.dark {
+      background: var(--color-bg-inverse);
+    }
+    .border-card.dark .border-card-label { color: rgba(244,242,235,.42); }
+    .border-card.dark .border-card-val   { color: var(--color-accent); }
+
+    /* ── Z-index ───────────────────────────────────────────────── */
+    .zindex-grid {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+    }
+    .zindex-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .zindex-bar {
+      width: 80px;
+      background: linear-gradient(to top, var(--color-accent), rgba(184,149,90,.3));
+      border-radius: 4px 4px 0 0;
+    }
+    .zindex-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-align: center;
+    }
+    .zindex-value {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    .ds-footer {
+      margin-top: 80px;
+      padding: 40px var(--pad-x);
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ds-footer p {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .ds-footer strong { color: var(--color-text-primary); }
+  </style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-title">
+    Design<br><span>System</span>
+  </div>
+  <div class="cover-meta">
+    <p><strong>Jovan Mladenović</strong></p>
+    <p>Portfolio · v1.0.0</p>
+    <p>2026-03-24</p>
+    <p style="margin-top:8px">Fonts: <strong>Inter · Syne</strong></p>
+  </div>
+</div>
+
+
+<!-- ── COLOR ─────────────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-label">01 — Color</div>
+  <div class="color-groups">
+
+    <!-- Background -->
+    <div>
+      <div class="color-group-title">Background</div>
+      <div class="color-swatches">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#ECEAE1;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Background Primary</div>
+            <div class="swatch-token">--color-bg-primary · #ECEAE1</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F4F2EB;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Background Subtle</div>
+            <div class="swatch-token">--color-bg-subtle · #F4F2EB</div>
+          </div>
+        </div>
+        <div class="swatch" style="background:#17150D">
+          <div class="swatch-block" style="background:#17150D;border-right:1px solid rgba(255,255,255,0.08)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color:#F4F2EB">Background Inverse</div>
+            <div class="swatch-token" style="color:rgba(244,242,235,.42)">--color-bg-inverse · #17150D</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div>
+      <div class="color-group-title">Text</div>
+      <div class="color-swatches">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#17150D;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Primary</div>
+            <div class="swatch-token">--color-text-primary · #17150D</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#7B7970;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Secondary</div>
+            <div class="swatch-token">--color-text-secondary · #7B7970</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F4F2EB;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Inverse</div>
+            <div class="swatch-token">--color-text-inverse · #F4F2EB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent + Status + Border -->
+    <div>
+      <div class="color-group-title">Accent · Status · Border</div>
+      <div class="color-swatches">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#B8955A;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Accent</div>
+            <div class="swatch-token">--color-accent · #B8955A</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#6EA06E;border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Status Available</div>
+            <div class="swatch-token">--color-status-available · #6EA06E</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:rgba(23,21,13,.10);border-right:1px solid rgba(0,0,0,0.06)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Border Default</div>
+            <div class="swatch-token">--color-border · rgba(23,21,13,.10)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ── TYPOGRAPHY ─────────────────────────────────────────────── -->
+<div class="section" style="margin-top:72px">
+  <div class="section-label">02 — Typography</div>
+  <div class="type-section">
+
+    <div class="type-families">
+      <div class="type-family-card">
+        <div class="type-family-sample" style="font-family:'Inter',sans-serif">Aa Bb Cc</div>
+        <div class="type-family-meta">
+          <span>--font-display</span>
+          Inter · 300 400 500 600 700 800<br>
+          Used for: Hero names, headlines, numbers
+        </div>
+      </div>
+      <div class="type-family-card">
+        <div class="type-family-sample" style="font-family:'Syne',sans-serif">Aa Bb Cc</div>
+        <div class="type-family-meta">
+          <span>--font-ui</span>
+          Syne · 400 500 600 700 800<br>
+          Used for: Nav, labels, body copy, UI chrome
+        </div>
+      </div>
+      <div class="type-family-card" style="background:var(--color-bg-inverse)">
+        <div style="display:flex;gap:32px;margin-bottom:20px">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px">Tracking</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">0.06em · tight</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">0.10em · base</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">0.14em · lg</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">0.18em · xl</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent);margin-bottom:12px">Leading</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">0.88 · tightest</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">1.04 · tight</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">1.3  · normal</div>
+              <div style="font-size:11px;color:rgba(244,242,235,.7);font-family:monospace">1.8  · loose</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,242,235,.42)">Tracking · Leading Reference</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="type-scale">
+        <div class="type-row"><div class="type-row-label">Hero<br>80–160px</div><div class="type-row-sample" style="font-size:56px;letter-spacing:-.02em">Jovan</div></div>
+        <div class="type-row"><div class="type-row-label">3xl<br>56–110px</div><div class="type-row-sample" style="font-size:44px;letter-spacing:-.02em">Let's Talk</div></div>
+        <div class="type-row"><div class="type-row-label">2xl<br>40–72px</div><div class="type-row-sample" style="font-size:36px">Selected Work</div></div>
+        <div class="type-row"><div class="type-row-label">xl<br>26–48px</div><div class="type-row-sample" style="font-size:30px">FITSEE · IngenioRx</div></div>
+        <div class="type-row"><div class="type-row-label">lg<br>20–32px</div><div class="type-row-sample" style="font-size:22px;font-style:italic">"Complexity, inevitable."</div></div>
+        <div class="type-row"><div class="type-row-label">md<br>15px</div><div class="type-row-sample" style="font-size:15px;font-weight:400;font-family:var(--font-ui)">About body copy, long-form text</div></div>
+        <div class="type-row"><div class="type-row-label">base<br>14px</div><div class="type-row-sample" style="font-size:14px;font-weight:400;font-family:var(--font-ui)">Project descriptions, contact sub</div></div>
+        <div class="type-row"><div class="type-row-label">xs<br>11px</div><div class="type-row-sample" style="font-size:11px;font-weight:600;font-family:var(--font-ui);letter-spacing:.10em;text-transform:uppercase">NAV LINKS · METADATA</div></div>
+        <div class="type-row"><div class="type-row-label">2xs<br>10px</div><div class="type-row-sample" style="font-size:10px;font-weight:700;font-family:var(--font-ui);letter-spacing:.18em;text-transform:uppercase">SECTION LABELS · TAGS</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ── SPACING ─────────────────────────────────────────────────── -->
+<div class="section" style="margin-top:72px">
+  <div class="section-label">03 — Spacing</div>
+  <div class="spacing-grid">
+    <div class="spacing-item"><div class="spacing-bar" style="height:3px"></div><div class="spacing-value">3px</div><div class="spacing-label">--space-1</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:6px"></div><div class="spacing-value">6px</div><div class="spacing-label">--space-2</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:10px"></div><div class="spacing-value">10px</div><div class="spacing-label">--space-3</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:14px"></div><div class="spacing-value">14px</div><div class="spacing-label">--space-4</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:16px"></div><div class="spacing-value">16px</div><div class="spacing-label">--space-5</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:20px"></div><div class="spacing-value">20px</div><div class="spacing-label">--space-6</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:24px"></div><div class="spacing-value">24px</div><div class="spacing-label">--space-7</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:28px"></div><div class="spacing-value">28px</div><div class="spacing-label">--space-8</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:36px"></div><div class="spacing-value">36px</div><div class="spacing-label">--space-9</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:40px"></div><div class="spacing-value">40px</div><div class="spacing-label">--space-10</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:48px"></div><div class="spacing-value">48px</div><div class="spacing-label">--space-11</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:52px"></div><div class="spacing-value">52px</div><div class="spacing-label">--space-12</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:64px"></div><div class="spacing-value">64px</div><div class="spacing-label">--space-13</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:80px"></div><div class="spacing-value">80px</div><div class="spacing-label">--space-14</div></div>
+    <div class="spacing-item"><div class="spacing-bar" style="height:96px"></div><div class="spacing-value">96px</div><div class="spacing-label">--space-15</div></div>
+    <div class="spacing-item">
+      <div style="width:32px;height:96px;background:linear-gradient(to top,rgba(184,149,90,.15),rgba(184,149,90,.7));border-radius:2px;border:1px dashed var(--color-accent)"></div>
+      <div class="spacing-value" style="font-size:9px;text-align:center">clamp<br>24–104px</div>
+      <div class="spacing-label">--space-page-x</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── MOTION ─────────────────────────────────────────────────── -->
+<div class="section" style="margin-top:72px">
+  <div class="section-label">04 — Motion</div>
+  <div class="motion-grid">
+
+    <div>
+      <div class="motion-group-title">Duration</div>
+      <div class="motion-rows">
+        <div class="motion-row"><div class="motion-key">Fast</div><div class="motion-val">0.20s</div><div class="motion-desc">Color / opacity</div></div>
+        <div class="motion-row"><div class="motion-key">Base</div><div class="motion-val">0.25s</div><div class="motion-desc">Gap / padding</div></div>
+        <div class="motion-row"><div class="motion-key">Medium</div><div class="motion-val">0.40s</div><div class="motion-desc">Nav, icon rotate</div></div>
+        <div class="motion-row"><div class="motion-key">Slow</div><div class="motion-val">0.55s</div><div class="motion-desc">Accordion expand</div></div>
+        <div class="motion-row"><div class="motion-key">Reveal</div><div class="motion-val">0.85s</div><div class="motion-desc">Scroll fade-up</div></div>
+        <div class="motion-row"><div class="motion-key">Rise</div><div class="motion-val">1.00s</div><div class="motion-desc">Hero entrance</div></div>
+        <div class="motion-row"><div class="motion-key">Pulse</div><div class="motion-val">2.60s</div><div class="motion-desc">Status dot loop</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="motion-group-title">Easing</div>
+      <div class="motion-rows">
+        <div class="motion-row" style="grid-template-columns:100px 1fr">
+          <div class="motion-key">Spring</div>
+          <div class="motion-val">cubic-bezier(0.16, 1, 0.3, 1)</div>
+        </div>
+        <div class="motion-row" style="grid-template-columns:100px 1fr">
+          <div class="motion-key">Linear</div>
+          <div class="motion-val">linear</div>
+        </div>
+        <div class="motion-row" style="grid-template-columns:100px 1fr">
+          <div class="motion-key">In-Out</div>
+          <div class="motion-val">ease-in-out</div>
+        </div>
+      </div>
+      <div style="margin-top:40px">
+        <div class="motion-group-title">Reveal Offset</div>
+        <div class="motion-rows">
+          <div class="motion-row" style="grid-template-columns:140px 1fr">
+            <div class="motion-key">Default</div>
+            <div class="motion-val">translateY(28px)</div>
+          </div>
+          <div class="motion-row" style="grid-template-columns:140px 1fr">
+            <div class="motion-key">Small</div>
+            <div class="motion-val">translateY(20px)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ── BORDER & Z-INDEX ────────────────────────────────────────── -->
+<div class="section" style="margin-top:72px">
+  <div class="section-label">05 — Borders · Z-Index</div>
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:64px">
+
+    <div>
+      <div class="border-grid">
+        <div class="border-card">
+          <div class="border-preview" style="background:rgba(23,21,13,.10)"></div>
+          <div class="border-card-label">Border Default</div>
+          <div class="border-card-val">rgba(23,21,13, .10)</div>
+        </div>
+        <div class="border-card dark">
+          <div class="border-preview" style="background:rgba(255,255,255,.08)"></div>
+          <div class="border-card-label">Border Light</div>
+          <div class="border-card-val">rgba(255,255,255, .08)</div>
+        </div>
+        <div class="border-card">
+          <div class="border-preview" style="background:var(--color-text-primary)"></div>
+          <div class="border-card-label">Border Width</div>
+          <div class="border-card-val">1px solid</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="zindex-grid" style="height:200px;align-items:flex-end">
+        <div class="zindex-item">
+          <div class="zindex-bar" style="height:20px"></div>
+          <div class="zindex-value">0</div>
+          <div class="zindex-label">Base</div>
+        </div>
+        <div class="zindex-item">
+          <div class="zindex-bar" style="height:30px"></div>
+          <div class="zindex-value">1</div>
+          <div class="zindex-label">Raised</div>
+        </div>
+        <div class="zindex-item">
+          <div class="zindex-bar" style="height:80px"></div>
+          <div class="zindex-value">200</div>
+          <div class="zindex-label">Nav</div>
+        </div>
+        <div class="zindex-item">
+          <div class="zindex-bar" style="height:160px"></div>
+          <div class="zindex-value">9999</div>
+          <div class="zindex-label">Overlay</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Footer -->
+<div class="ds-footer">
+  <p><strong>Jovan Mladenović Portfolio</strong> · Design System · v1.0.0</p>
+  <p>Tokens exported: <strong>tokens.css</strong> · <strong>design-tokens.json</strong></p>
+  <p>Generated 2026-03-24</p>
+</div>
+
+</body>
+</html>

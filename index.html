@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jovan Mladenović — Senior Product Designer</title>
+  <title>Jovan Mladenović - Senior Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -267,15 +267,20 @@
     /* Hero portrait */
     .hero-portrait {
       position: absolute;
-      left: 5%;
-      top: 10%;
-      height: 54%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 70%;
       width: auto;
       pointer-events: none;
       z-index: 0;
-      mix-blend-mode: multiply;
       opacity: 0;
-      animation: rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      animation: portrait-fade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    @keyframes portrait-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
 
@@ -649,6 +654,40 @@
       }
       .hero-right { padding-top: 0; }
 
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 72px;
+        padding-bottom: 40px;
+        min-height: 100svh;
+      }
+
+      .hero-portrait {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 72vw;
+        height: auto;
+        margin: 16px auto 8px;
+        flex-shrink: 0;
+      }
+
+      .hero-main {
+        width: 100%;
+      }
+
+      .hero-bar {
+        width: 100%;
+        margin-top: auto;
+      }
+
+      .hero-name .first,
+      .hero-name .last {
+        font-size: clamp(48px, 13vw, 80px);
+      }
+
       .about  { grid-template-columns: 1fr; }
       .about-right { padding-top: 0; }
 
@@ -670,6 +709,8 @@
         border-right: none;
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
+      .approach-item:nth-child(2),
+      .approach-item:last-child { padding-left: 0; padding-right: 0; }
       .approach-item:last-child { border-bottom: none; }
 
       .contact { grid-template-columns: 1fr; }
@@ -698,7 +739,7 @@
 <!-- ─────────────────────── HERO ────────────────────────────── -->
 <section id="top" class="hero">
 
-  <img src="Myself@2x.png" alt="" class="hero-portrait" aria-hidden="true">
+  <img src="hero-image.png" alt="" class="hero-portrait" aria-hidden="true">
 
   <div class="hero-main">
 
@@ -709,7 +750,7 @@
 
     <div class="hero-right">
       <p class="hero-title">Senior Product Designer &nbsp;·&nbsp; Design Manager</p>
-      <p class="hero-tagline">"Fifteen years making complexity feel inevitable."</p>
+      <p class="hero-tagline">"Fifteen years turning complexity into clarity."</p>
       <div class="hero-status">
         <span class="status-dot"></span>
         Open to new opportunities
@@ -772,14 +813,14 @@
         <span class="proj-num">01</span>
         <span class="proj-name">Fitsee Luméa</span>
         <div class="proj-right">
-          <span class="proj-meta">Smart Beauty<br>Product Design</span>
+          <span class="proj-meta">Workplace Wellness<br>Reimagined</span>
           <span class="proj-plus">+</span>
         </div>
       </div>
       <div class="project-expand">
         <div class="project-expand-inner">
           <p class="proj-desc">End-to-end design of a smart beauty device and companion app. Led product discovery, concept definition, and interaction design from zero to launch across hardware and software touchpoints.</p>
-          <a href="#" class="proj-cta">Case Study →</a>
+          <a href="https://fitsee.me/" target="_blank" rel="noopener" class="proj-cta">Live website →</a>
         </div>
       </div>
     </div>
@@ -797,7 +838,7 @@
       <div class="project-expand">
         <div class="project-expand-inner">
           <p class="proj-desc">Redesigned the pharmacy benefit management platform for one of the largest US insurers. Simplified complex healthcare workflows and improved accessibility for millions of members.</p>
-          <a href="#" class="proj-cta">Case Study →</a>
+          <a href="IngenioRX.pdf" target="_blank" rel="noopener" class="proj-cta">Case Study →</a>
         </div>
       </div>
     </div>
@@ -815,7 +856,7 @@
       <div class="project-expand">
         <div class="project-expand-inner">
           <p class="proj-desc">Designed the AI-powered workout companion experience for Fitsee Mirror. Defined the interaction model for real-time coaching, onboarding, and personalised fitness journeys.</p>
-          <a href="#" class="proj-cta">Case Study →</a>
+          <a href="FitseeFitness.pdf" target="_blank" rel="noopener" class="proj-cta">Case Study →</a>
         </div>
       </div>
     </div>
@@ -826,14 +867,14 @@
         <span class="proj-num">04</span>
         <span class="proj-name">Tempest</span>
         <div class="proj-right">
-          <span class="proj-meta">Mental Wellness<br>UX Leadership</span>
+          <span class="proj-meta">Scheduling Workforce<br>UX Leadership</span>
           <span class="proj-plus">+</span>
         </div>
       </div>
       <div class="project-expand">
         <div class="project-expand-inner">
-          <p class="proj-desc">Led UX strategy and design for a mental wellness platform helping people understand and reshape their relationship with alcohol. Sensitive, thoughtful, and evidence-based.</p>
-          <a href="#" class="proj-cta">Case Study →</a>
+          <p class="proj-desc">Led UX strategy and UI design for a workforce scheduling application that rethought the category entirely - borrowing the familiar patterns of instant messaging to make complex shift management feel intuitive and human.</p>
+          <a href="Tempest.pdf" target="_blank" rel="noopener" class="proj-cta">Case Study →</a>
         </div>
       </div>
     </div>
@@ -851,7 +892,7 @@
       <div class="project-expand">
         <div class="project-expand-inner">
           <p class="proj-desc">Redesigned the e-commerce and service booking experience for a global home cleaning brand. Improved conversion, reduced support volume, and modernised the brand's digital presence.</p>
-          <a href="#" class="proj-cta">Case Study →</a>
+          <a href="RugDoctor.pdf" target="_blank" rel="noopener" class="proj-cta">Case Study →</a>
         </div>
       </div>
     </div>
@@ -873,7 +914,7 @@
     <div class="approach-item">
       <span class="approach-num">01</span>
       <h3 class="approach-title">I think before I design</h3>
-      <p class="approach-body">Design is a collaborative problem-solving process that connects user needs, business goals, and technical realities. Discovery and framing come first, always — the shape of the question determines the quality of the answer.</p>
+      <p class="approach-body">Design is a collaborative problem-solving process that connects user needs, business goals, and technical realities. Discovery and framing come first, always - the shape of the question determines the quality of the answer.</p>
     </div>
 
     <div class="approach-item">
@@ -885,7 +926,7 @@
     <div class="approach-item">
       <span class="approach-num">03</span>
       <h3 class="approach-title">I design systems, not screens</h3>
-      <p class="approach-body">Architecture taught me that scalable patterns outlast any single deliverable. I care about the whole — how components behave, how teams understand and extend the work, how design holds up over time.</p>
+      <p class="approach-body">Architecture taught me that scalable patterns outlast any single deliverable. I care about the whole - how components behave, how teams understand and extend the work, how design holds up over time.</p>
     </div>
 
   </div>
@@ -900,7 +941,7 @@
     <h2 class="contact-headline">
       Let's<br><em>talk.</em>
     </h2>
-    <p class="contact-sub">If you're building a product, exploring a new direction, or looking for a senior designer to help shape strategy and execution — reach out.</p>
+    <p class="contact-sub">If you're building a product, exploring a new direction, or looking for a senior designer to help shape strategy and execution - reach out.</p>
   </div>
 
   <div class="contact-right reveal reveal-delay-1">

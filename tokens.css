@@ -1,0 +1,130 @@
+/**
+ * ─────────────────────────────────────────────────────────
+ *  JOVAN MLADENOVIĆ — DESIGN TOKENS
+ *  Single source of truth for the portfolio design system.
+ *  Derived from index.html  ·  2026-03-24
+ * ─────────────────────────────────────────────────────────
+ */
+
+:root {
+
+  /* ── Color: Background ─────────────────────────────── */
+  --color-bg-primary:   #ECEAE1;   /* warm parchment — main canvas          */
+  --color-bg-subtle:    #F4F2EB;   /* lighter parchment — card / hover lift  */
+  --color-bg-inverse:   #17150D;   /* near-black — dark sections (Approach)  */
+
+  /* ── Color: Text ───────────────────────────────────── */
+  --color-text-primary:    #17150D;              /* primary body + headings  */
+  --color-text-secondary:  #7B7970;              /* muted — captions, labels */
+  --color-text-inverse:    #F4F2EB;              /* on dark backgrounds      */
+  --color-text-inverse-dim: rgba(244,242,235,.42); /* body text on dark bg   */
+  --color-text-inverse-mid: rgba(244,242,235,.30); /* italic em on dark bg   */
+
+  /* ── Color: Accent ─────────────────────────────────── */
+  --color-accent:       #B8955A;   /* warm gold — CTAs, labels, hover states */
+
+  /* ── Color: Status ─────────────────────────────────── */
+  --color-status-available: #6EA06E; /* green availability dot               */
+
+  /* ── Color: Border ─────────────────────────────────── */
+  --color-border:       rgba(23, 21, 13, 0.10);  /* hairline on light bg    */
+  --color-border-light: rgba(255, 255, 255, 0.08); /* hairline on dark bg   */
+
+
+  /* ── Typography: Font Families ─────────────────────── */
+  --font-display: 'Inter', sans-serif;   /* hero names, headlines, numbers   */
+  --font-ui:      'Syne', sans-serif;    /* nav, labels, body, UI chrome     */
+
+  /* ── Typography: Scale (fluid) ─────────────────────── */
+  --text-2xs:   10px;
+  --text-xs:    11px;
+  --text-sm:    12px;
+  --text-sm-md: 13px;
+  --text-base:  14px;
+  --text-md:    15px;
+  --text-lg:    clamp(20px, 2.6vw, 32px);   /* hero tagline, contact links  */
+  --text-xl:    clamp(26px, 3.8vw, 48px);   /* project names               */
+  --text-2xl:   clamp(40px, 5.2vw, 72px);   /* section headlines           */
+  --text-3xl:   clamp(56px, 8vw,  110px);   /* contact headline            */
+  --text-hero:  clamp(80px, 11.5vw, 160px); /* hero name                  */
+
+  /* ── Typography: Weights ───────────────────────────── */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  /* ── Typography: Tracking (letter-spacing) ─────────── */
+  --tracking-tight:  0.06em;
+  --tracking-sm:     0.09em;
+  --tracking-base:   0.10em;
+  --tracking-md:     0.12em;
+  --tracking-lg:     0.14em;
+  --tracking-xl:     0.18em;
+
+  /* ── Typography: Leading (line-height) ─────────────── */
+  --leading-tightest: 0.88;   /* hero name                                  */
+  --leading-tight:    1.04;   /* display headlines                          */
+  --leading-snug:     1.2;    /* approach card titles                       */
+  --leading-normal:   1.3;    /* tagline                                    */
+  --leading-relaxed:  1.6;    /* label stacks                               */
+  --leading-loose:    1.8;    /* body copy                                  */
+  --leading-spacious: 1.85;   /* approach body                              */
+
+
+  /* ── Spacing: Layout ───────────────────────────────── */
+  --space-page-x: clamp(24px, 6.5vw, 104px);  /* horizontal page padding  */
+  --space-page-y: clamp(72px,   9vw, 128px);  /* section vertical padding */
+
+  /* ── Spacing: Scale ────────────────────────────────── */
+  --space-1:   3px;
+  --space-2:   6px;
+  --space-3:  10px;
+  --space-4:  14px;
+  --space-5:  16px;
+  --space-6:  20px;
+  --space-7:  24px;
+  --space-8:  28px;
+  --space-9:  36px;
+  --space-10: 40px;
+  --space-11: 48px;
+  --space-12: 52px;
+  --space-13: 64px;
+  --space-14: 80px;
+  --space-15: 96px;
+
+
+  /* ── Motion: Duration ──────────────────────────────── */
+  --duration-fast:   0.20s;
+  --duration-base:   0.25s;
+  --duration-medium: 0.40s;
+  --duration-slow:   0.55s;
+  --duration-reveal: 0.85s;
+  --duration-rise:   1.00s;
+  --duration-pulse:  2.60s;
+
+  /* ── Motion: Easing ────────────────────────────────── */
+  --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);  /* primary spring / expo-out */
+  --ease-linear:  linear;
+  --ease-in-out:  ease-in-out;
+
+  /* ── Motion: Reveal (scroll) ───────────────────────── */
+  --reveal-offset-y: 28px;
+  --reveal-offset-y-sm: 20px;
+
+
+  /* ── Borders ───────────────────────────────────────── */
+  --border-width: 1px;
+  --border-default: 1px solid var(--color-border);
+  --border-light:   1px solid var(--color-border-light);
+
+
+  /* ── Z-index ───────────────────────────────────────── */
+  --z-base:    0;
+  --z-raised:  1;
+  --z-nav:     200;
+  --z-overlay: 9999;
+
+}
