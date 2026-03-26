@@ -238,11 +238,11 @@
       margin-top: 48px;
     }
     .cols-3 .col {
-      padding: 52px 40px 40px 0;
+      padding: 52px 40px 40px 40px;
       border-right: 1px solid var(--border-dark);
     }
     .cols-3 .col:first-child { padding-left: 0; }
-    .cols-3 .col:last-child { border-right: none; padding-right: 0; }
+    .cols-3 .col:last-child { border-right: none; }
     .col-num {
       font-family: var(--f-body);
       font-style: italic;
@@ -491,11 +491,11 @@
       margin-top: 48px;
     }
     .summary-cols .col {
-      padding: 52px 40px 40px 0;
+      padding: 52px 40px 40px 40px;
       border-right: 1px solid var(--border-dark);
     }
     .summary-cols .col:first-child { padding-left: 0; }
-    .summary-cols .col:last-child  { border-right: none; padding-right: 0; }
+    .summary-cols .col:last-child  { border-right: none; }
 
     /* ── END NAV BAR ──────────────────────────────────────── */
     .end-bar {
@@ -614,8 +614,22 @@
     .delay-2 { animation-delay: 0.25s; }
     .delay-3 { animation-delay: 0.4s; }
 
+    /* ── BRAND SCROLL SECTION ─────────────────────────────── */
+    .brand-scroll-section {
+      min-height: 160vh;
+      align-items: start;
+    }
+    .brand-scroll-section .col-content {
+      position: sticky;
+      top: clamp(80px, 10vw, 120px);
+    }
+    .brand-parallax-img {
+      will-change: transform;
+    }
+
     /* ── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 840px) {
+      .mirror-video-section { display: none !important; }
       .nav-links { display: none; }
 
       .hero {
@@ -638,6 +652,12 @@
       .section-2col,
       .section-2col.reverse {
         grid-template-columns: 1fr;
+      }
+      .brand-scroll-section {
+        min-height: unset;
+      }
+      .brand-scroll-section .col-content {
+        position: static;
       }
       .section-2col.reverse .col-content { order: 1; }
       .section-2col.reverse .col-media   { order: 2; }
@@ -756,15 +776,15 @@
 <!-- ─────────────────── IMAGE SHOWCASE ───────────────────── -->
 <div class="image-showcase">
   <div class="showcase-card showcase-card-sm">
-    <img src="https://www.figma.com/api/mcp/asset/9bce3f59-0f08-4685-ad0a-c2acc7877cfe" alt="Fitness lifestyle">
+    <img src="https://www.figma.com/api/mcp/asset/abafb9fd-3ee2-4df5-8f10-6316bf63f0d6" alt="Fitness motivation">
   </div>
   <div class="showcase-card showcase-card-lg">
-    <img src="https://www.figma.com/api/mcp/asset/19df7715-fd2a-4dc1-ba6d-b73db4399ee4" alt="Fitsee Mirror prototype">
+    <img src="https://www.figma.com/api/mcp/asset/d1289c22-5c63-4da7-a522-49bfed80fd41" alt="Fitsee Mirror in use">
   </div>
 </div>
 
 <!-- ─────────────────── IDENTITY ─────────────────────────── -->
-<section class="section-2col" style="border-top: 1px solid var(--border);">
+<section class="section-2col brand-scroll-section" style="border-top: 1px solid var(--border);">
   <div class="col-content">
     <span class="label">Identity</span>
     <div class="display">
@@ -777,65 +797,26 @@
     </p>
   </div>
   <div class="col-media">
-    <div class="brand-card">
-      <!-- Logo section -->
-      <div class="brand-logo-area">
-        <img src="https://www.figma.com/api/mcp/asset/5fdc3539-ab72-4ee6-a8d3-285aee5ecb3a" alt="Fitsee brand imagery">
-      </div>
-      <!-- Color palette -->
-      <div class="brand-section">
-        <p class="brand-section-label">COLOR PALETTE</p>
-        <div class="swatches">
-          <div class="swatch" style="background: #074F57;"><span>#074F57</span></div>
-          <div class="swatch" style="background: #087086;"><span>#087086</span></div>
-          <div class="swatch" style="background: #23A5C0;"><span>#23A5C0</span></div>
-          <div class="swatch" style="background: #9ECE9A;"><span>#9ECE9A</span></div>
-        </div>
-      </div>
-      <!-- Social posts -->
-      <div class="social-posts">
-        <img src="https://www.figma.com/api/mcp/asset/b91f2906-7bd5-4350-9d92-8627bc66771d" alt="Fitsee social post 1">
-        <img src="https://www.figma.com/api/mcp/asset/16612081-cbda-438d-90c0-76b60467250a" alt="Fitsee social post 2">
-      </div>
-      <!-- Typography -->
-      <div class="brand-section">
-        <p class="brand-section-label">TYPOGRAPHY</p>
-        <div class="type-sample">
-          <div class="font-name large" style="font-family: Georgia, serif;">Raleway</div>
-          <div class="font-chars" style="color: #074f57; opacity: 0.6;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk — H1-H3</div>
-        </div>
-        <div class="type-sample">
-          <div class="font-name" style="font-family: 'Inter', sans-serif; color: #074f57;">Quicksand</div>
-          <div class="font-chars" style="color: #074f57; opacity: 0.6;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk — Body/Notes</div>
-        </div>
-      </div>
-      <!-- Icons -->
-      <div class="brand-section" style="background: #074F57; margin: 0; padding: 24px 42px 40px;">
-        <p class="brand-section-label" style="color: rgba(255,255,255,0.6);">ICONOGRAPHY</p>
-        <div class="icon-row">
-          <img src="https://www.figma.com/api/mcp/asset/35deffb5-4555-4a73-9590-ec0525e88c59" alt="Icon 1">
-          <img src="https://www.figma.com/api/mcp/asset/c6d5b2ae-01bc-4cdb-b023-348b50aee842" alt="Icon 2">
-          <img src="https://www.figma.com/api/mcp/asset/65d522f6-caca-4f37-a76a-7d36f908fe76" alt="Icon 3">
-          <img src="https://www.figma.com/api/mcp/asset/f05a4cbb-5bec-4110-b3ec-48d4d43835a4" alt="Icon 4">
-        </div>
-      </div>
-    </div>
+    <img src="https://www.figma.com/api/mcp/asset/d2099608-0d5d-4ff9-a569-152bb34703fa"
+         alt="Fitsee brand design"
+         class="brand-parallax-img"
+         style="width:100%; height:auto; border-radius:40px; box-shadow:0 9px 28px rgba(0,0,0,0.2); display:block;">
   </div>
 </section>
 
 <!-- ─────────────────── MIRROR VIDEO ─────────────────────── -->
-<section style="padding: var(--pad-y) var(--pad-x); display: flex; justify-content: center;">
-  <div class="video-placeholder" style="width: 100%; max-width: 1520px; height: clamp(400px, 54vw, 934px);">
-    Video coming soon
-  </div>
+<section class="mirror-video-section" style="padding: var(--pad-y) var(--pad-x); display: flex; justify-content: center;">
+  <video autoplay muted loop playsinline style="width: 100%; max-width: 1520px; height: clamp(400px, 54vw, 934px); object-fit: cover; border-radius: 60px; display: block;">
+    <source src="mirror_video_1.mp4" type="video/mp4">
+  </video>
 </section>
 
 <!-- ─────────────────── EXPERIENCE ───────────────────────── -->
 <section class="section-2col" style="border-top: 1px solid var(--border);">
   <div class="col-media" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-    <div class="video-placeholder" style="width: min(443px, 100%); aspect-ratio: 369/651; border-radius: clamp(24px,4vw,48px);">
-      Onboarding video
-    </div>
+    <video autoplay muted loop playsinline style="width: min(443px, 100%); aspect-ratio: 369/651; border-radius: clamp(24px,4vw,48px); object-fit: cover; display: block;">
+      <source src="ui_video_1.mp4" type="video/mp4">
+    </video>
     <span style="font-family: var(--f-sans); font-size: 15px; color: var(--ink);">Onboarding Animation</span>
   </div>
   <div class="col-content">
@@ -867,8 +848,10 @@
       <span class="screen-label">Coaching approach</span>
     </div>
     <div class="screen-item">
-      <div class="screen-frame video-placeholder" style="border-radius: clamp(24px,4vw,48px);">
-        Video
+      <div class="screen-frame" style="border-radius: clamp(24px,4vw,48px); overflow: hidden;">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="ui_video_2.mp4" type="video/mp4">
+        </video>
       </div>
       <span class="screen-label">Lose weight - Plans</span>
     </div>
@@ -879,14 +862,18 @@
       <span class="screen-label">Get fit &amp; toned - Plans</span>
     </div>
     <div class="screen-item">
-      <div class="screen-frame video-placeholder" style="border-radius: clamp(24px,4vw,48px);">
-        Video
+      <div class="screen-frame" style="border-radius: clamp(24px,4vw,48px); overflow: hidden;">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="ui_video_3.mp4" type="video/mp4">
+        </video>
       </div>
       <span class="screen-label">Nutrition &amp; workout plan</span>
     </div>
     <div class="screen-item">
-      <div class="screen-frame video-placeholder" style="border-radius: clamp(24px,4vw,48px);">
-        Video
+      <div class="screen-frame" style="border-radius: clamp(24px,4vw,48px); overflow: hidden;">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="ui_video_4.mp4" type="video/mp4">
+        </video>
       </div>
       <span class="screen-label">Hand gestures interaction - test</span>
     </div>
@@ -901,9 +888,9 @@
   <div class="col-content">
     <span class="label">Experience</span>
     <div class="display">
-      An Interface<br>
-      That Feels Like<br>
-      <span class="dim">a Conversation</span>
+      A Screen<br>
+      That Motivates<br>
+      <span class="dim">and Supports</span>
     </div>
     <p class="body-copy">
       A core innovation was the introduction of a fully gesture-based control system, allowing users to navigate the entire interface using only their hands. This eliminated the need for any additional devices or the constant interruption of moving back and forth to a touchscreen mid-workout, keeping users in flow and focused on their exercise.
@@ -925,7 +912,7 @@
     </p>
   </div>
   <div class="hardware-img">
-    <img src="https://www.figma.com/api/mcp/asset/758a11f5-0d8f-49f8-9059-4e20fbc35026" alt="Fitsee Mirror hardware diagram">
+    <img src="https://www.figma.com/api/mcp/asset/66090f22-921b-400f-be73-e12c229f6060" alt="Fitsee Mirror hardware diagram">
   </div>
 </section>
 
@@ -995,5 +982,24 @@
   <span class="footer-copy">Belgrade, Serbia · © 2026</span>
 </footer>
 
+<script>
+  // Brand section parallax — image drifts up as you scroll through
+  (function () {
+    const section = document.querySelector('.brand-scroll-section');
+    const img = document.querySelector('.brand-parallax-img');
+    if (!section || !img) return;
+
+    function onScroll() {
+      if (window.innerWidth <= 840) { img.style.transform = ''; return; }
+      const rect = section.getBoundingClientRect();
+      const progress = -rect.top / (rect.height - window.innerHeight);
+      const clamped = Math.max(0, Math.min(1, progress));
+      img.style.transform = 'translateY(' + (clamped * -60) + 'px)';
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 </body>
 </html>
