@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tempest — Staff &amp; Scheduling Platform | Jovan Mladenović</title>
+  <meta name="description" content="Case study: Tempest — a greenfield staffing and scheduling platform for temporary workforces, built from the ground up across mobile app and web portal. Designed by Jovan Mladenović." />
+  <meta name="author" content="Jovan Mladenović" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://jovanmladenovic.com/tempest.html" />
+  <!-- Open Graph / Social sharing -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jovanmladenovic.com/tempest.html" />
+  <meta property="og:title" content="Tempest — Jovan Mladenović" />
+  <meta property="og:description" content="Case study: Tempest — a greenfield staffing and scheduling platform for temporary workforces, by Jovan Mladenović." />
+  <meta property="og:image" content="https://jovanmladenovic.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Jovan Mladenović" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tempest — Jovan Mladenović" />
+  <meta name="twitter:description" content="Case study: Tempest — a greenfield staffing and scheduling platform for temporary workforces, by Jovan Mladenović." />
+  <meta name="twitter:image" content="https://jovanmladenovic.com/og-image.png" />
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "name": "Tempest — Staff & Scheduling Platform Case Study",
+        "url": "https://jovanmladenovic.com/tempest.html",
+        "description": "A greenfield staffing and scheduling platform for temporary workforces, built from the ground up as a mobile app and web portal under one unified design system.",
+        "author": {
+          "@type": "Person",
+          "name": "Jovan Mladenović",
+          "url": "https://jovanmladenovic.com/"
+        },
+        "dateCreated": "2018",
+        "dateModified": "2019",
+        "keywords": "UX design, staffing platform, scheduling app, mobile app, web portal, product design, greenfield",
+        "image": "https://jovanmladenovic.com/og-image.png"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jovanmladenovic.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tempest", "item": "https://jovanmladenovic.com/tempest.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Figma Capture -->
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","w1eh4c968z");
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #ECEAE1;
+      --bg-subtle:   #F4F2EB;
+      --bg-dark:     #17150D;
+      --ink:         #17150D;
+      --ink-mid:     #7B7970;
+      --ink-inv:     #F4F2EB;
+      --ink-inv-dim: rgba(244,242,235,0.42);
+      --ink-inv-mid: rgba(244,242,235,0.30);
+      --gold:        #B8955A;
+      --border:      rgba(23,21,13,0.10);
+      --border-dark: rgba(255,255,255,0.08);
+      --f-sans:      'Syne', sans-serif;
+      --f-body:      'Inter', sans-serif;
+      --pad-x:       clamp(24px, 6.5vw, 104px);
+      --pad-y:       clamp(64px, 8vw, 128px);
+      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-sans);
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(236,234,225,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-name {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── LABEL ────────────────────────────────────────────── */
+    .label {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── DISPLAY HEADING ──────────────────────────────────── */
+    .display {
+      font-family: var(--f-body);
+      font-size: clamp(48px, 5.5vw, 72px);
+      line-height: 1.04;
+      font-weight: 400;
+    }
+    .display .dim      { color: var(--ink-mid); font-style: italic; }
+    .display .inv      { color: var(--ink-inv); }
+    .display .inv-dim  { color: var(--ink-inv-mid); font-style: italic; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      padding: 130px var(--pad-x) 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .hero-title {
+      font-family: var(--f-body);
+      font-size: clamp(44px, 5.5vw, 72px);
+      line-height: 1.04;
+      font-weight: 400;
+    }
+    .hero-title .dim {
+      color: var(--ink-mid);
+      font-style: italic;
+      display: block;
+    }
+    .hero-subtitle {
+      font-family: var(--f-sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      max-width: 500px;
+    }
+    .hero-role .role-label {
+      font-family: var(--f-sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .hero-role .role-list {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 620px;
+      height: auto;
+      object-fit: contain;
+    }
+    .hero-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      border-top: 1px solid var(--border);
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+    }
+    .hero-bar-label {
+      font-family: var(--f-sans);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--ink-mid);
+    }
+    .hero-scroll span {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+
+    /* ── DARK SECTION ─────────────────────────────────────── */
+    .section-dark {
+      background: var(--bg-dark);
+      padding: var(--pad-y) var(--pad-x);
+    }
+    .section-dark .section-header {
+      margin-bottom: 48px;
+    }
+
+    /* ── 3-COL GRID ───────────────────────────────────────── */
+    .cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-dark);
+      margin-top: 48px;
+    }
+    .cols-3 .col {
+      padding: 52px 40px 40px 40px;
+      border-right: 1px solid var(--border-dark);
+    }
+    .cols-3 .col:first-child { padding-left: 0; }
+    .cols-3 .col:last-child  { border-right: none; }
+    .col-num {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 52px;
+    }
+    .col-head {
+      font-family: var(--f-body);
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 400;
+      color: var(--ink-inv);
+      margin-bottom: 24px;
+    }
+    .col-body {
+      font-family: var(--f-sans);
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--ink-inv-dim);
+    }
+
+    /* ── THE PROJECT (centered text section) ──────────────── */
+    .project-section {
+      padding: var(--pad-y) var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .project-display {
+      font-family: var(--f-body);
+      font-size: clamp(44px, 5.5vw, 72px);
+      line-height: 1.04;
+      font-weight: 400;
+      margin-top: 48px;
+      margin-bottom: 56px;
+    }
+    .project-display .dim {
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+    .project-body {
+      font-family: var(--f-sans);
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink);
+      max-width: 696px;
+    }
+
+    /* ── IMAGE GALLERY ────────────────────────────────────── */
+    .gallery-section {
+      padding: 0 var(--pad-x) var(--pad-y);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .gallery-img {
+      width: 100%;
+      max-width: 1520px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+    }
+    .gallery-img:first-child {
+      border-radius: 60px 60px 0 0;
+    }
+    .gallery-img:last-child {
+      border-radius: 0 0 60px 60px;
+    }
+
+    /* ── SUMMARY (dark 3-col) ─────────────────────────────── */
+    .summary-section {
+      background: var(--bg-dark);
+      padding: var(--pad-y) var(--pad-x);
+    }
+    .summary-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-dark);
+      margin-top: 48px;
+    }
+    .summary-cols .col {
+      padding: 52px 40px 40px 40px;
+      border-right: 1px solid var(--border-dark);
+    }
+    .summary-cols .col:first-child { padding-left: 0; }
+    .summary-cols .col:last-child  { border-right: none; }
+
+    /* ── END NAV BAR ──────────────────────────────────────── */
+    .end-bar {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+    }
+    .end-link {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .end-link:hover { opacity: 0.6; }
+
+    /* ── CONTACT ──────────────────────────────────────────── */
+    .contact-section {
+      padding: var(--pad-y) var(--pad-x);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+      border-top: 1px solid var(--border);
+    }
+    .contact-heading {
+      font-family: var(--f-body);
+      font-weight: 300;
+      font-size: clamp(56px, 7vw, 110px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+    .contact-heading .dim {
+      color: var(--ink-mid);
+      font-style: italic;
+      display: block;
+    }
+    .contact-sub {
+      font-family: var(--f-sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      max-width: 340px;
+      margin-top: 28px;
+    }
+    .contact-links { padding-top: 72px; }
+    .contact-link-row {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      margin-top: -1px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .contact-link-row:hover { opacity: 0.6; }
+    .contact-link-name {
+      font-family: var(--f-body);
+      font-weight: 400;
+      font-size: clamp(24px, 3vw, 36px);
+      color: var(--ink);
+    }
+    .contact-link-arrow {
+      font-family: var(--f-body);
+      font-size: 18px;
+      color: var(--ink-mid);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+    }
+    .footer-name {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink-mid);
+    }
+    .footer-copy {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+
+    /* ── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .fade-up {
+      opacity: 0;
+      animation: rise 0.85s var(--ease) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 840px) {
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+      }
+      .hero-image { order: -1; }
+      .hero-image img { max-width: 80vw; }
+
+      .cols-3 {
+        grid-template-columns: 1fr;
+      }
+      .cols-3 .col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-dark);
+        padding: 40px 0;
+      }
+      .cols-3 .col:last-child { border-bottom: none; }
+
+      .summary-cols {
+        grid-template-columns: 1fr;
+      }
+      .summary-cols .col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-dark);
+        padding: 40px 0;
+      }
+      .summary-cols .col:last-child { border-bottom: none; }
+
+      .gallery-img {
+        aspect-ratio: 4 / 3;
+      }
+      .gallery-img:first-child { border-radius: 32px 32px 0 0; }
+      .gallery-img:last-child  { border-radius: 0 0 32px 32px; }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+      .contact-links { padding-top: 0; }
+
+      .project-section { text-align: left; align-items: flex-start; }
+      .project-body { max-width: 100%; }
+
+      .footer { flex-direction: column; height: auto; padding: 24px var(--pad-x); gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────── NAV ─────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-name">Jovan Mladenović</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#approach">Approach</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─────────────────── HERO ─────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">
+      <span class="label">Welcome to</span>
+      <h1 class="hero-title">
+        Tempest:<br>
+        Staff &amp; Schedules,<br>
+        <span class="dim">Simplified</span>
+      </h1>
+    </div>
+    <p class="hero-subtitle fade-up delay-1">
+      A greenfield staffing and scheduling platform for temporary workforces — built from the ground up as a mobile app for employees and a web portal for employers, unified under one design system.
+    </p>
+    <div class="hero-role fade-up delay-2">
+      <p class="role-label">My Role:</p>
+      <p class="role-list">Senior UI/UX Designer<br>Branding · Mobile App · Web App</p>
+    </div>
+  </div>
+  <div class="hero-image fade-up delay-2">
+    <img src="https://www.figma.com/api/mcp/asset/5aaa6ac9-403a-4cfe-b736-0abaad426537" alt="Tempest staffing platform">
+  </div>
+  <div class="hero-bar">
+    <span class="hero-bar-label">Product Redesign · 2018–2019</span>
+    <div class="hero-scroll"><span>Scroll</span></div>
+  </div>
+</section>
+
+<!-- ─────────────────── OVERVIEW ─────────────────────────── -->
+<section class="section-dark">
+  <div class="section-header">
+    <span class="label">Overview</span>
+    <div class="display" style="margin-top: 48px;">
+      <span class="inv">Challenge /</span><br>
+      <span class="inv-dim">Approach</span>
+    </div>
+  </div>
+  <div class="cols-3">
+    <div class="col">
+      <p class="col-num">01</p>
+      <h3 class="col-head">Context</h3>
+      <p class="col-body">Tempest is a greenfield staffing platform designed for temporary workforces. Two distinct user groups with very different needs: employees who need a clear, frictionless mobile experience, and employers who need full visibility and control via a web portal. Everything — product, brand, and design system — was built from scratch.</p>
+    </div>
+    <div class="col">
+      <p class="col-num">02</p>
+      <h3 class="col-head">Challenge</h3>
+      <p class="col-body">Complex scheduling logic — shifts, documents, compliance, approvals, multi-location management. Employees face fragmented processes across disconnected tools; employers lack real-time visibility into workforce status. The goal: one coherent product that feels genuinely simple for both sides of the equation.</p>
+    </div>
+    <div class="col">
+      <p class="col-num">03</p>
+      <h3 class="col-head">Approach</h3>
+      <p class="col-body">Radical simplicity as the guiding principle. A familiar interaction model with no learning curve. An open, readable visual language built for diverse user types. A single design system spanning the mobile app and web portal. Every decision made to reduce friction and increase clarity — for the shift worker and the site manager alike.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── THE PROJECT ──────────────────────── -->
+<section class="project-section">
+  <span class="label">The Project</span>
+  <h2 class="project-display">
+    An Interface<br>
+    as Familiar as<br>
+    <span class="dim">a Chat App</span>
+  </h2>
+  <p class="project-body">
+    Design started with user flows before any screens were drawn. Wireframes were reworked iteratively to surface missing features and edge cases before committing to visual design. The web portal and mobile app were developed in parallel, ensuring consistency at every interaction layer.
+    <br><br>
+    The approach centred on openness and friendliness — a color palette and visual language that felt immediately readable for a diverse, non-technical user base. A custom icon set was designed from scratch: shift requests, documents, messages, shift swaps, sick leave, holidays — each visually distinct yet tonally unified. The experience flows naturally from login through worker profile, home feed, shift detail, and calendar — with no dead ends and no confusion.
+  </p>
+</section>
+
+<!-- ─────────────────── IMAGE GALLERY ────────────────────── -->
+<div class="gallery-section">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/a3108f71-08c5-4970-8340-c895719b4fba" alt="Tempest platform screen 01" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/ed549bf5-5c93-40c3-8831-7d6e25462347" alt="Tempest platform screen 02" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/3e61389c-e87d-41e7-9d3f-b899c194bbf4" alt="Tempest platform screen 03" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/6e341785-65fb-4411-b3d0-e263dc2cd20c" alt="Tempest platform screen 04" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/019f30c7-5c74-4e2b-be03-334f168659fb" alt="Tempest platform screen 05" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/70d44808-3a4a-499f-8259-ddcb461a0962" alt="Tempest platform screen 06" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/342ef654-9e2e-4d1c-ab8b-029519987f4e" alt="Tempest platform screen 07" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/3880f480-cd9c-4aac-a825-17eedef7e514" alt="Tempest platform screen 08" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/37315e3b-e03e-42a7-83ea-0dfe4864a6e1" alt="Tempest platform screen 09" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/7893e53b-763d-4270-9cf9-cf0d5afe8c58" alt="Tempest platform screen 10" loading="lazy">
+  <img class="gallery-img" src="https://www.figma.com/api/mcp/asset/ac8c690a-ec28-4d54-b480-4c8f027d0655" alt="Tempest platform screen 11" loading="lazy">
+</div>
+
+<!-- ─────────────────── RETROSPECTIVE ────────────────────── -->
+<section class="summary-section">
+  <div class="section-header">
+    <span class="label">Retrospective</span>
+    <div class="display" style="margin-top: 48px;">
+      <span class="inv">Summary /</span><br>
+      <span class="inv-dim">Reflections</span>
+    </div>
+  </div>
+  <div class="summary-cols">
+    <div class="col">
+      <p class="col-num">Impact</p>
+      <h3 class="col-head">What Tempest Delivered</h3>
+      <p class="col-body">A complete end-to-end product spanning branding, mobile app, and web portal — built from zero to a fully functional, production-ready design. Two very different user experiences unified under one coherent design system, with a visual identity strong enough to stand on its own.</p>
+    </div>
+    <div class="col">
+      <p class="col-num">Learning</p>
+      <h3 class="col-head">What This Project Taught Me</h3>
+      <p class="col-body">A strong conceptual anchor early on is critical. The "chat card" pattern kept the design consistent as the product grew in scope. Designing for clarity rather than sophistication travels further when the user base is diverse and the tasks are time-sensitive. Simplicity is not a limitation — it is the product.</p>
+    </div>
+    <div class="col">
+      <p class="col-num">Takeaway</p>
+      <h3 class="col-head">Design That Works</h3>
+      <p class="col-body">The best products for complex industries are not the most complicated ones. When design gets out of the way, it becomes invisible — and that invisibility is the point. Tempest proved that a thoughtful interaction model and a clean visual language are enough to make even the most operationally complex workflow feel effortless.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── END BAR ───────────────────────────── -->
+<div class="end-bar">
+  <a href="index.html" class="end-link">← Back to Home</a>
+  <a href="#top" class="end-link">Back to Top</a>
+</div>
+
+<!-- ─────────────────── CONTACT ───────────────────────────── -->
+<section class="contact-section" id="contact">
+  <div>
+    <span class="label">Got an idea?</span>
+    <h2 class="contact-heading" style="margin-top: 24px;">
+      Get in<br>
+      <span class="dim">touch.</span>
+    </h2>
+    <p class="contact-sub">If you're building a product, exploring a new direction, or looking for a senior designer to help shape strategy and execution — reach out.</p>
+  </div>
+  <div class="contact-links">
+    <a href="mailto:hello@jovanmladenovic.com" class="contact-link-row">
+      <span class="contact-link-name">Email</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="https://www.linkedin.com/in/jovanmladenovic" target="_blank" rel="noopener" class="contact-link-row">
+      <span class="contact-link-name">LinkedIn</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="https://www.instagram.com/jovan.lab" target="_blank" rel="noopener" class="contact-link-row">
+      <span class="contact-link-name">Instagram</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─────────────────── FOOTER ────────────────────────────── -->
+<footer class="footer">
+  <span class="footer-name">Jovan Mladenović</span>
+  <span class="footer-copy">Belgrade, Serbia · © 2026</span>
+</footer>
+
+</body>
+</html>
