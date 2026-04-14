@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Jovan Mladenović</title>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;1,300;1,400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #ECEAE1;
+      --ink:     #17150D;
+      --ink-mid: #7B7970;
+      --gold:    #B8955A;
+      --border:  rgba(23,21,13,0.12);
+      --f-sans:  'Syne', sans-serif;
+      --f-body:  'Inter', sans-serif;
+      --page-w:  794px;
+      --pad:     56px;
+    }
+
+    html, body {
+      background: #D8D6CD;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px;
+      font-family: var(--f-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === TOOLBAR === */
+    .toolbar {
+      width: var(--page-w);
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .toolbar-note {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(23,21,13,0.45);
+    }
+    .toolbar-print {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: none;
+      border: 1px solid rgba(23,21,13,0.25);
+      padding: 7px 16px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .toolbar-print:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* === PAGE === */
+    .page {
+      width: var(--page-w);
+      max-width: 100%;
+      background: var(--bg);
+      padding: var(--pad);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    }
+
+    /* === HEADER === */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .header-portrait {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
+    }
+    .header-name {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.5px;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .header-title {
+      font-family: var(--f-sans);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-top: 9px;
+    }
+    .header-contact {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-top: 4px;
+    }
+    .header-contact a,
+    .header-contact span {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+    }
+    .header-contact a:hover { color: var(--ink); }
+
+    /* === SUMMARY === */
+    .summary {
+      margin-top: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary p {
+      font-family: var(--f-body);
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+
+    /* === BODY (two-column) === */
+    .body {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 213px;
+      gap: 0 48px;
+    }
+
+    /* === SECTION === */
+    .section {
+      margin-bottom: 28px;
+    }
+    .section-label {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* === EXPERIENCE ITEMS === */
+    .exp-item {
+      margin-bottom: 20px;
+    }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .exp-role {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      color: var(--ink);
+    }
+    .exp-company {
+      font-family: var(--f-sans);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--ink-mid);
+    }
+    .exp-dates {
+      font-family: var(--f-sans);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .exp-body {
+      font-family: var(--f-body);
+      font-weight: 400;
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: var(--ink);
+    }
+
+    /* === SIDEBAR === */
+    .sidebar {
+      border-left: 1px solid var(--border);
+      padding-left: 32px;
+    }
+
+    /* === EDU ITEMS === */
+    .edu-item {
+      margin-bottom: 18px;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-degree {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 3px;
+    }
+    .edu-school {
+      font-family: var(--f-body);
+      font-size: 12px;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+    .edu-dates {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      color: var(--ink-mid);
+      margin-top: 2px;
+    }
+
+    /* === SKILL GROUPS === */
+    .skill-group {
+      margin-bottom: 16px;
+    }
+    .skill-group-title {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .skill-list li {
+      font-family: var(--f-body);
+      font-size: 12px;
+      color: var(--ink-mid);
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+    }
+    .skill-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* === LANGUAGES === */
+    .lang-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .lang-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .lang-name {
+      font-family: var(--f-sans);
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--ink);
+    }
+    .lang-level {
+      font-family: var(--f-body);
+      font-size: 11px;
+      color: var(--ink-mid);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-url {
+      font-family: var(--f-sans);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .footer-url:hover { text-decoration: underline; }
+    .footer-page {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+
+    /* === PRINT === */
+    @media print {
+      html, body {
+        background: white;
+        padding: 0;
+      }
+      .toolbar { display: none; }
+      .page {
+        width: 210mm;
+        padding: 18mm 16mm;
+        box-shadow: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      :root { --pad: 32px; }
+      .body { grid-template-columns: 1fr; }
+      .sidebar {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-left: 0;
+        padding-top: 24px;
+        margin-top: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <span class="toolbar-note">Resume</span>
+    <button class="toolbar-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <img
+          class="header-portrait"
+          src="Image@2x.png"
+          srcset="Image.png 1x, Image@2x.png 2x, Image@3x.png 3x"
+          alt="Jovan Mladenović"
+        />
+        <div>
+          <div class="header-name">Jovan Mladenović</div>
+          <div class="header-title">Senior Product &amp; Interaction Designer</div>
+        </div>
+      </div>
+      <div class="header-contact">
+        <a href="http://jovanmladenovic.com/" target="_blank">jovanmladenovic.com</a>
+        <a href="mailto:hello@jovanmladenovic.com">hello@jovanmladenovic.com</a>
+        <a href="https://www.linkedin.com/in/jovanmladenovic" target="_blank">linkedin.com/in/jovanmladenovic</a>
+        <span>Belgrade, Serbia</span>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+      <p>Senior Product &amp; Interaction Designer with 15+ years of experience designing, shaping, and leading digital products across wellbeing, healthcare, fintech, and consumer platforms. Strong background in end-to-end product design, from discovery and strategy to execution and scale. Experienced in collaborating with cross-functional teams, translating complex technology into intuitive user experiences, and delivering products that balance business goals with human-centered design. Background in architecture brings a systems-oriented mindset and strong structural thinking to complex product challenges.</p>
+    </div>
+
+    <!-- BODY -->
+    <div class="body">
+
+      <!-- LEFT: EXPERIENCE -->
+      <div>
+        <div class="section">
+          <div class="section-label">Experience</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Lead Product Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; Fitsee Wellbeing</span>
+              </div>
+              <span class="exp-dates">Jul 2025 – Present</span>
+            </div>
+            <p class="exp-body">Led the full redesign of the product following a strategic pivot from B2C to B2B. Repositioned Fitsee as an anonymous workplace wellbeing tool for office environments - shifting from personalised fitness motivation to science-based mental resets and focus boosts for employees during the workday. Redesigned the entire experience model - user journey, interaction paradigm, and UI - to serve a fundamentally different context, user, and business model.</p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Lead Product Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; Fitsee Mirror</span>
+              </div>
+              <span class="exp-dates">Feb 2022 – Jul 2025</span>
+            </div>
+            <p class="exp-body">Led design from zero across a hardware-enabled smart fitness mirror - brand identity, gesture-based UI, AI coaching experience, and physical product form factor, all built from scratch. Defined the full interaction model for a screen-free, touch-free experience using computer vision and hand gesture recognition. Owned product vision end-to-end, working directly with engineering and leadership from first concept through working prototype.</p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Senior Product Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; Ascendum Solutions</span>
+              </div>
+              <span class="exp-dates">Jul 2020 – Jan 2022</span>
+            </div>
+            <p class="exp-body">Led product design initiatives for IngenioRx (Anthem), a large-scale pharmacy benefit management platform. Designed digital-first, personalized healthcare experiences focused on simplifying complex prescription workflows. Worked closely with product managers, engineers, and stakeholders in an enterprise environment.</p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Lead UI/UX Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; CoreWare Labs</span>
+              </div>
+              <span class="exp-dates">Mar 2018 – Jul 2020</span>
+            </div>
+            <p class="exp-body">Led UI/UX design across multiple in-house and client projects. Designed products for clients including Brainvest, RugDoctor, Omnicharge, Wealth Impact Insights, VYBN, InfraCraft, Lockers App, and ReSupply. Established design direction, user flows, and interaction patterns across diverse industries.</p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Freelance UI/UX Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; Projects</span>
+              </div>
+              <span class="exp-dates">Jan 2017 – Mar 2018</span>
+            </div>
+            <p class="exp-body">Lead Designer on multiple iOS, Android, and web projects from concept to launch - including Tempest, Chooster, Transfera, Longplay, and others. Managed full design lifecycle independently, working directly with clients.</p>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">UI/UX &amp; Visual Designer</span>
+                <span class="exp-company"> &nbsp;·&nbsp; Razor Comm.</span>
+              </div>
+              <span class="exp-dates">Dec 2012 – Jan 2017</span>
+            </div>
+            <p class="exp-body">Worked across print, branding, web, and mobile applications. Clients included Zepter Real Estate, UNICEF, SIEPA, Digital Communication Institute, Delshe, Starverse, and Tailor Fin. Built a strong foundation in visual design, UX thinking, and multidisciplinary collaboration.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIDEBAR -->
+      <div class="sidebar">
+
+        <div class="section">
+          <div class="section-label">Education</div>
+          <div class="edu-item">
+            <div class="edu-degree">Master of Architecture</div>
+            <div class="edu-school">University of Belgrade, Serbia</div>
+            <div class="edu-dates">2009 – 2011</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Architecture</div>
+            <div class="edu-school">University of Belgrade, Serbia</div>
+            <div class="edu-dates">2006 – 2009</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Skills</div>
+          <div class="skill-group">
+            <div class="skill-group-title">Product &amp; Design</div>
+            <ul class="skill-list">
+              <li>Product Strategy &amp; Discovery</li>
+              <li>UX Research &amp; User Flows</li>
+              <li>Problem &amp; Opportunity Definition</li>
+              <li>Mobile &amp; Web Product Design</li>
+              <li>Interaction Design</li>
+              <li>Prototyping &amp; Concept Validation</li>
+              <li>Stakeholder Alignment</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Strengths</div>
+            <ul class="skill-list">
+              <li>Creative Problem Solving</li>
+              <li>Clear Communicator</li>
+              <li>Detail-Oriented</li>
+              <li>Team Leadership</li>
+              <li>Systems Thinking</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Languages</div>
+          <ul class="lang-list">
+            <li><span class="lang-name">English</span><span class="lang-level">Fluent</span></li>
+            <li><span class="lang-name">Serbian</span><span class="lang-level">Native</span></li>
+            <li><span class="lang-name">Russian</span><span class="lang-level">Basic</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <a class="footer-url" href="http://jovanmladenovic.com/" target="_blank">jovanmladenovic.com →</a>
+      <span class="footer-page">1 / 1</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
