@@ -556,6 +556,14 @@
       transition: color 0.2s;
     }
     .proj-cta:hover { color: var(--accent); }
+    .proj-cta-group {
+      grid-column: 3;
+      align-self: end;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
 
 
     /* ══════════════════════════════════════════════════════════ */
@@ -887,7 +895,10 @@
       <div class="project-expand">
         <div class="project-expand-inner">
           <p class="proj-desc">Defined the product from scratch - spanning industrial design, mirror UX/UI, and a novel hand gesture interaction model that made a screen-free, touch-free experience feel completely natural.</p>
-          <a href="https://fitsee.me/" target="_blank" rel="noopener" class="proj-cta">Live website →</a>
+          <div class="proj-cta-group">
+            <a href="https://product.fitsee.me/" target="_blank" rel="noopener" class="proj-cta">Product page →</a>
+            <a href="https://fitsee.me/" target="_blank" rel="noopener" class="proj-cta">Live website →</a>
+          </div>
         </div>
       </div>
     </div>
