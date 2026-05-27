@@ -1106,6 +1106,130 @@
     });
   });
 
+  // ─── Water Ripple — Hero only ────────────────────────────────
+  (function () {
+    if (window.matchMedia('(hover: none)').matches) return; // skip touch devices
+
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    // Overlay canvas
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;mix-blend-mode:screen;';
+    if (getComputedStyle(hero).position === 'static') hero.style.position = 'relative';
+    hero.style.overflow = 'hidden';
+    hero.appendChild(canvas);
+
+    const ctx  = canvas.getContext('2d');
+
+    // Simulation grid — low resolution for performance
+    const COLS = 220;
+    const ROWS = 110;
+    const DAMP = 0.988; // 1 = no decay, lower = faster decay
+
+    let W = canvas.width  = hero.offsetWidth;
+    let H = canvas.height = hero.offsetHeight;
+    new ResizeObserver(() => {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }).observe(hero);
+
+    // Double-buffered height field
+    let cur = new Float32Array(COLS * ROWS); // current frame
+    let prv = new Float32Array(COLS * ROWS); // previous frame
+
+    // Small offscreen canvas — rendered at sim resolution, scaled up
+    const ofc  = document.createElement('canvas');
+    ofc.width  = COLS;
+    ofc.height = ROWS;
+    const octx = ofc.getContext('2d');
+    const img  = octx.createImageData(COLS, ROWS);
+    const pix  = img.data;
+
+    // Disturb surface at normalised position [0,1]
+    function disturb(nx, ny) {
+      const cx = Math.round(nx * (COLS - 1));
+      const cy = Math.round(ny * (ROWS - 1));
+      const R  = 8;
+      for (let dy = -R; dy <= R; dy++) {
+        for (let dx = -R; dx <= R; dx++) {
+          const x = cx + dx, y = cy + dy;
+          if (x < 1 || y < 1 || x >= COLS - 1 || y >= ROWS - 1) continue;
+          const d = Math.hypot(dx, dy);
+          if (d < R) cur[y * COLS + x] += 100 * (1 - d / R);
+        }
+      }
+    }
+
+    // Wave propagation step
+    function step() {
+      for (let y = 1; y < ROWS - 1; y++) {
+        for (let x = 1; x < COLS - 1; x++) {
+          const i  = y * COLS + x;
+          prv[i] = (cur[i-1] + cur[i+1] + cur[i-COLS] + cur[i+COLS]) * 0.5 - prv[i];
+          prv[i] *= DAMP;
+        }
+      }
+      const tmp = cur; cur = prv; prv = tmp;
+    }
+
+    // Phong lighting constants — light from upper-left
+    const LX = 0.408, LY = 0.408, LZ = 0.816;
+
+    // Render height field → pixel buffer
+    function render() {
+      for (let y = 1; y < ROWS - 1; y++) {
+        for (let x = 1; x < COLS - 1; x++) {
+          const i  = y * COLS + x;
+          const h  = cur[i];
+          const gx = cur[i + 1]    - cur[i - 1];     // x gradient
+          const gy = cur[i + COLS] - cur[i - COLS];   // y gradient
+
+          // Surface normal (unnormalised → normalise)
+          const nz  = 55;
+          const len = Math.sqrt(gx*gx + gy*gy + nz*nz);
+          const nnx = -gx / len;
+          const nny = -gy / len;
+          const nnz =  nz / len;
+
+          // Diffuse + specular (Phong)
+          const diff = Math.max(0, nnx*LX + nny*LY + nnz*LZ);
+          const spec = Math.pow(Math.max(0, nnz), 28) * diff;
+
+          // Warm golden-white highlight (echoes --accent #B8955A)
+          const bright = spec * 230 + diff * 28;
+          const pi     = i * 4;
+          pix[pi]     = Math.min(255, bright);           // R — warm
+          pix[pi + 1] = Math.min(255, bright * 0.82);   // G
+          pix[pi + 2] = Math.min(255, bright * 0.50);   // B — less blue
+          pix[pi + 3] = Math.min(235,
+            Math.abs(h) * 3.5 + (Math.abs(gx) + Math.abs(gy)) * 5
+          );
+        }
+      }
+      octx.putImageData(img, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(ofc, 0, 0, W, H);  // upscale to full hero size
+    }
+
+    // Track mouse within hero bounds
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      disturb(
+        (e.clientX - r.left) / r.width,
+        (e.clientY - r.top)  / r.height
+      );
+    });
+
+    // Main loop
+    (function loop() {
+      step();
+      render();
+      requestAnimationFrame(loop);
+    })();
+  })();
 
 </script>
 </body>
