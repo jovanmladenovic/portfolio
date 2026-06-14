@@ -925,9 +925,76 @@
       .footer { flex-direction: column; gap: 8px; text-align: center; }
     }
 
+    /* ─── Site Loader ─────────────────────────────────────────── */
+    .site-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--pad-x);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .site-loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-text-wrap {
+      text-align: center;
+      max-width: 820px;
+    }
+
+    .loader-quote {
+      font-family: var(--f-serif);
+      font-size: clamp(26px, 4.5vw, 58px);
+      font-weight: 300;
+      color: var(--pale);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .loader-caption {
+      font-family: var(--f-sans);
+      font-size: clamp(12px, 1.1vw, 14px);
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 22px;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.3s;
+    }
+
+    .site-loader.animate .loader-quote,
+    .site-loader.animate .loader-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
+
+
+<!-- ─────────────────────── LOADER ──────────────────────────── -->
+<div class="site-loader" id="siteLoader" aria-hidden="true">
+  <div class="loader-text-wrap">
+    <p class="loader-quote">Ko rano rani, dve sreće grabi.</p>
+    <p class="loader-caption">Serbian proverb (cultural equivalent of the English saying "The early bird gets the worm")</p>
+  </div>
+</div>
 
 
 <!-- ─────────────────────── NAV ─────────────────────────────── -->
@@ -1267,6 +1334,31 @@
 
 <!-- ─────────────────────── JS ───────────────────────────────── -->
 <script>
+
+  // ─── Site Loader ──────────────────────────────────────────────
+  (function () {
+    const loader = document.getElementById('siteLoader');
+    if (!loader) return;
+
+    // Lock scroll while loader is active
+    document.body.style.overflow = 'hidden';
+
+    // Start text animation on next paint so transitions fire
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      loader.classList.add('animate');
+    }));
+
+    // Hold for 3 s, then fade out and remove
+    setTimeout(() => {
+      loader.classList.add('fade-out');
+      loader.addEventListener('transitionend', function handler(e) {
+        if (e.propertyName !== 'opacity') return;
+        loader.removeEventListener('transitionend', handler);
+        loader.remove();
+        document.body.style.overflow = '';
+      });
+    }, 3000);
+  })();
 
   // Nav: add .scrolled class after hero
   const nav = document.getElementById('nav');
