@@ -74,6 +74,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@calcom/cal-sans@1.0.1/fonts/cal-sans.css">
   <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   <style>
 
@@ -950,16 +951,36 @@
     }
 
     .loader-quote {
-      font-family: var(--f-serif);
+      font-family: 'Cal Sans', var(--f-serif);
       font-size: clamp(26px, 4.5vw, 58px);
-      font-weight: 300;
+      font-weight: 600;
       color: var(--pale);
       line-height: 1.18;
       letter-spacing: -0.01em;
+    }
+
+    /* Each word animates individually */
+    .loader-word {
+      display: inline-block;
       opacity: 0;
       transform: translateY(50px);
-      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: blur(12px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .site-loader.animate .loader-word:nth-child(1) { transition-delay: 0.00s; }
+    .site-loader.animate .loader-word:nth-child(2) { transition-delay: 0.13s; }
+    .site-loader.animate .loader-word:nth-child(3) { transition-delay: 0.26s; }
+    .site-loader.animate .loader-word:nth-child(4) { transition-delay: 0.39s; }
+    .site-loader.animate .loader-word:nth-child(5) { transition-delay: 0.52s; }
+    .site-loader.animate .loader-word:nth-child(6) { transition-delay: 0.65s; }
+
+    .site-loader.animate .loader-word {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
     }
 
     .loader-caption {
@@ -974,10 +995,9 @@
       transform: translateY(50px);
       transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                   transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: 0.3s;
+      transition-delay: 1.0s;
     }
 
-    .site-loader.animate .loader-quote,
     .site-loader.animate .loader-caption {
       opacity: 1;
       transform: translateY(0);
@@ -991,8 +1011,8 @@
 <!-- ─────────────────────── LOADER ──────────────────────────── -->
 <div class="site-loader" id="siteLoader" aria-hidden="true">
   <div class="loader-text-wrap">
-    <p class="loader-quote">Ko rano rani, dve sreće grabi.</p>
-    <p class="loader-caption">Serbian proverb (cultural equivalent of the English saying "The early bird gets the worm")</p>
+    <p class="loader-quote"></p>
+    <p class="loader-caption"></p>
   </div>
 </div>
 
@@ -1339,6 +1359,34 @@
   (function () {
     const loader = document.getElementById('siteLoader');
     if (!loader) return;
+
+    // Proverb pool — one is picked randomly on each visit
+    const proverbs = [
+      {
+        quote:   '„Ko rano rani, dve sreće grabi."',
+        caption: 'Serbian proverb (cultural equivalent of the English saying "The early bird gets the worm")'
+      },
+      {
+        quote:   '„Bez muke nema nauke."',
+        caption: 'Serbian proverb (cultural equivalent of the English saying "No pain, no gain.")'
+      },
+      {
+        quote:   '„Tiha voda breg roni."',
+        caption: 'Serbian proverb (cultural equivalent of the English saying "Still waters run deep.")'
+      }
+    ];
+
+    const picked = proverbs[Math.floor(Math.random() * proverbs.length)];
+
+    // Build individual word spans for the quote
+    const quoteEl  = loader.querySelector('.loader-quote');
+    const captionEl = loader.querySelector('.loader-caption');
+
+    quoteEl.innerHTML = picked.quote
+      .split(' ')
+      .map(w => `<span class="loader-word">${w}</span>`)
+      .join(' ');
+    captionEl.textContent = picked.caption;
 
     // Lock scroll while loader is active
     document.body.style.overflow = 'hidden';
