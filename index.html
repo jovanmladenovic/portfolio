@@ -229,10 +229,6 @@
       line-height: 0.88;
       letter-spacing: -0.02em;
       font-size: clamp(80px, 11.5vw, 160px);
-
-      opacity: 0;
-      transform: translateY(20px);
-      animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
     }
 
     .hero-name .first  { display: block; }
@@ -244,9 +240,6 @@
       flex-direction: column;
       gap: 28px;
       padding-bottom: 6px;
-
-      opacity: 0;
-      animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
     }
 
     .hero-title {
@@ -298,9 +291,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      opacity: 0;
-      animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
     }
 
     .hero-meta {
@@ -328,10 +318,6 @@
       background: var(--muted);
     }
 
-    @keyframes rise {
-      to { opacity: 1; transform: none; }
-    }
-
     /* Hero portrait */
     .hero-portrait {
       position: absolute;
@@ -343,13 +329,30 @@
       pointer-events: none;
       z-index: 0;
       opacity: 0;
-      animation: portrait-fade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes portrait-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    /* ─── Hero intro ──────────────────────────────────────────── */
+    .hero-intro {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    .hero-portrait.hero-in { opacity: 1; }
+
+    .hero-intro.hero-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .nav {
+      opacity: 0;
+      transition: opacity 0.7s ease,
+                  background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    }
+    .nav.hero-in { opacity: 1; }
 
 
 
@@ -1037,12 +1040,12 @@
 
   <div class="hero-main">
 
-    <h1 class="hero-name">
+    <h1 class="hero-name hero-intro">
       <span class="first">Jovan</span>
       <span class="last">Mladenović</span>
     </h1>
 
-    <div class="hero-right">
+    <div class="hero-right hero-intro">
       <p class="hero-title">Lead Product Designer &nbsp;·&nbsp; AI Workflows</p>
       <p class="hero-tagline">"Fifteen years turning complexity into clarity."</p>
       <div class="hero-status">
@@ -1054,7 +1057,7 @@
   </div>
 
   <div>
-    <div class="hero-bar">
+    <div class="hero-bar hero-intro">
       <span class="hero-meta">Belgrade, Serbia &nbsp;·&nbsp; 15+ Years Experience</span>
       <div class="hero-scroll">
         <div class="hero-scroll-line"></div>
@@ -1396,6 +1399,20 @@
     requestAnimationFrame(() => requestAnimationFrame(() => {
       loader.classList.add('animate');
     }));
+
+    // ── Hero intro sequence ──────────────────────────────────────
+    // Staggered relative to when the loader starts fading (t=3000ms).
+    // Portrait begins just before fade-out so it's partially revealed
+    // as the dark overlay lifts; the rest cascade behind it.
+    const heroIn = (selector, delay) => setTimeout(() => {
+      document.querySelector(selector)?.classList.add('hero-in');
+    }, delay);
+
+    heroIn('.hero-portrait', 4200);   // loader gone at ~4000ms, portrait first
+    heroIn('.hero-name',     4600);   // name rises in
+    heroIn('.hero-right',    4950);   // title · tagline · status
+    heroIn('.hero-bar',      5250);   // meta bar + scroll
+    heroIn('.nav',           5500);   // nav fades in last
 
     // Hold for 3 s, then fade out and remove
     setTimeout(() => {
