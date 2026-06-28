@@ -1507,6 +1507,20 @@
     const loader = document.getElementById('siteLoader');
     if (!loader) return;
 
+    // Skip loader if already shown this session
+    if (sessionStorage.getItem('loaderShown')) {
+      loader.remove();
+      // Still run hero intro immediately
+      const heroIn = (sel, delay) => setTimeout(() => document.querySelector(sel)?.classList.add('hero-in'), delay);
+      heroIn('.hero-portrait', 100);
+      heroIn('.hero-name',     200);
+      heroIn('.hero-right',    300);
+      heroIn('.hero-bar',      400);
+      heroIn('.nav',           500);
+      return;
+    }
+    sessionStorage.setItem('loaderShown', '1');
+
     // Proverb pool — one is picked randomly on each visit
     const proverbs = [
       {
